@@ -1,3 +1,41 @@
 <view class="">
-    <video id="myVideo" src="{{info.sound.soundurl}}" binderror="videoErrorCallback" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}"></video>
+    <video class="video" id="myVideo" src="{{info.sound.soundurl}}" binderror="videoErrorCallback" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}">
+        <!-- <cover-view>
+            <cover-image src="{{info.sound.front_cover}}"></cover-image>
+        </cover-view> -->
+    </video>
+    <!-- 操作栏 -->
+    <view class="video-action flex-vertical-space-between padding-15">
+        <view class="flex-vertical-space-around" style="width:70%">
+            <view class="flex-horizon-center ">
+                <text class="iconfont icon-fenxiang"></text>
+                <text class="font-11 margin-top-3">分享</text>
+            </view>
+            <view class="flex-horizon-center ">
+                <text class="iconfont icon-xihuan"></text>
+                <text class="font-11 margin-top-3">喜欢</text>
+            </view>
+            <view class="flex-horizon-center ">
+                <text class="iconfont icon-xiazai"></text>
+                <text class="font-11 margin-top-3">下载</text>
+            </view>
+        </view>
+        <van-button size="small" color="#ED7760" class="open-app-btn ">用客户端打开</van-button>
+    </view>
+    <!-- 简介、评论、图片 -->
+    <van-tabs active="{{tabActive }}" bind:change="tabChange" class="tab-bar">
+        <van-tab title="简介" />
+        <van-tab title="评论" />
+        <van-tab title="图片" />
+    </van-tabs>
+    <view>
+        <!-- 简介 -->
+        <view class="" wx:if="{{tabActive===0}}">
+            <view>
+                <text>{{info.sound.soundstr}}</text>
+                <view></view>
+            </view>
+            <rich-text nodes="{{info.sound.intro}}"></rich-text>
+        </view>
+    </view>
 </view>

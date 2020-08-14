@@ -6,13 +6,14 @@ Page({
         id: id,
       });
     }
-    this.getVideoData();
+    this.getsoundData();
   },
   data: {
     id: 164094,
     info: "",
+    tabActive: 0,
   },
-  getVideoData() {
+  getsoundData() {
     let _this = this;
     wx.request({
       url: "https://www.missevan.com/sound/getsound?soundid=" + _this.data.id,
@@ -27,5 +28,14 @@ Page({
         console.log(_this.data.info.sound.soundurl);
       },
     });
+  },
+
+  tabChange(event) {
+    console.log(event.detail);
+    this.setData({
+      tabActive: event.detail.index,
+    });
+    if (event.detail.index === 0) {
+    }
   },
 });
