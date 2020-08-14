@@ -1,0 +1,16 @@
+<view class="">
+    <view class="background-back padding-10 font-0 flex-vertical-space-between">
+        <view>
+            <image class="" src="/images/maoer_logo.png" width="120px" style="width:102px;height:20px"></image>
+        </view>
+        <view class="">
+            <text class="iconfont icon-sousuo color-white font-22 margin-right-15"></text>
+            <text class="iconfont icon-gengduo color-white font-22"></text>
+        </view>
+    </view>
+    <van-tabs active="{{tabActive }}" bind:change="onChange" class="tab-bar">
+        <van-tab title="音单" />
+        <van-tab title="推荐" />
+        <van-tab title="分类" />
+    </van-tabs>
+</view>

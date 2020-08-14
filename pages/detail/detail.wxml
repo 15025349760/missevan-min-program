@@ -1,0 +1,3 @@
+<view class="">
+    <video id="myVideo" src="{{info.sound.soundurl}}" binderror="videoErrorCallback" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}"></video>
+</view>

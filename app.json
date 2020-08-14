@@ -1,0 +1,17 @@
+{
+  "usingComponents": {},
+  "pages": [
+    "pages/detail/detail",
+    "pages/index/index",
+    "pages/music-list/music-list"
+  ],
+
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+
+  "sitemapLocation": "sitemap.json"
+}
