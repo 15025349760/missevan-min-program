@@ -64,12 +64,18 @@ body {
 .color-999999 {
   color: #999999;
 }
-.color-EDEDED {
+.color-ededed {
   color: #ededed;
 }
 
-.color-3B86FF {
+.color-3b86ff {
   color: #3b86ff;
+}
+.color-cacaca {
+  color: #cacaca;
+}
+.color-f66950 {
+  color: #f66950;
 }
 
 .van-switch,
@@ -78,7 +84,14 @@ body {
   height: 20px;
   background-color: #fff;
 }
-
+.base-btn {
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  outline: none;
+  display: inline;
+  padding: 0;
+}
 .border-radius-8 {
   border-radius: 8px;
 }
@@ -87,6 +100,9 @@ body {
 }
 .border-bottom-ed {
   border-bottom: 1px solid #ededed;
+}
+.border-bottom-e8 {
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .background-back {
@@ -186,6 +202,9 @@ body {
 .padding-10 {
   padding: 10px;
 }
+.padding-0-10 {
+  padding: 0 10px;
+}
 .padding-15 {
   padding: 15px;
 }
@@ -213,15 +232,24 @@ body {
 .padding-bottom-80 {
   padding-bottom: 80px;
 }
+.padding-15-10 {
+  padding: 15px 10px;
+}
 
 .line-height-23 {
   line-height: 23px;
+}
+.line-height-1 {
+  line-height: 1;
 }
 .text-center {
   text-align: center;
 }
 .text-left {
   text-align: left;
+}
+.text-right {
+  text-align: right;
 }
 
 .float-left {

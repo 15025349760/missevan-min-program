@@ -1,21 +1,29 @@
 <view class="">
-    <video class="video" id="myVideo" src="{{info.sound.soundurl}}" binderror="videoErrorCallback" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}">
-        <!-- <cover-view>
-            <cover-image src="{{info.sound.front_cover}}"></cover-image>
-        </cover-view> -->
-    </video>
+    <video class="video" id="myVideo" src="{{info.sound.soundurl}}" danmu-list="{{danmuList}}" vslide-gesture="{{true}}" binderror="videoErrorCallback" enable-auto-rotation="{{true}}" enable-danmu="{{true}}" danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls="{{true}}" picture-in-picture-mode="{{['push', 'pop']}}"></video>
+    <!-- 发弹幕 -->
+    <view class="flex-vertical-space-between danmu-wrap ">
+        <van-field danmu="{{ danmu }}" placeholder="来点弹幕啊~" border="{{ false }}" bind:change="danmuChange" />
+        <text class="font-13 color-666666" bind:tap="sendDanmu">发送</text>
+    </view>
     <!-- 操作栏 -->
     <view class="video-action flex-vertical-space-between padding-15">
         <view class="flex-vertical-space-around" style="width:70%">
-            <view class="flex-horizon-center ">
-                <text class="iconfont icon-fenxiang"></text>
-                <text class="font-11 margin-top-3">分享</text>
+            <view>
+                <button open-type="share" class="share-btn base-btn ">
+                    <view class="flex-horizon-center ">
+                        <text class="iconfont icon-fenxiang"></text>
+                        <text class="font-11 margin-top-3">分享</text>
+                    </view>
+                </button>
             </view>
-            <view class="flex-horizon-center ">
-                <text class="iconfont icon-xihuan"></text>
-                <text class="font-11 margin-top-3">喜欢</text>
+            <view>
+                <view class="flex-horizon-center " bind:tap="isLikeHandle">
+                    <text class="iconfont icon-xihuan1 font-15 color-f66950 " wx:if="{{is_like}}"></text>
+                    <text class="iconfont icon-xihuan font-15 " wx:else></text>
+                    <text class="font-11 margin-top-3">喜欢</text>
+                </view>
             </view>
-            <view class="flex-horizon-center ">
+            <view class="flex-horizon-center " bind:tap="downloadHandle">
                 <text class="iconfont icon-xiazai"></text>
                 <text class="font-11 margin-top-3">下载</text>
             </view>
@@ -30,12 +38,50 @@
     </van-tabs>
     <view>
         <!-- 简介 -->
-        <view class="" wx:if="{{tabActive===0}}">
+        <view class="padding-10 border-bottom-e8" wx:if="{{tabActive===0}}">
             <view>
-                <text>{{info.sound.soundstr}}</text>
+                <text class="font-13">{{info.sound.soundstr}}</text>
                 <view></view>
             </view>
-            <rich-text nodes="{{info.sound.intro}}"></rich-text>
+            <view class="">
+                <text class="color-9e9e9e font-12">简介：</text>
+                <rich-text nodes="{{info.sound.intro}}" class="color-9e9e9e font-12" wx:if="{{is_unfold }}"></rich-text>
+                <rich-text nodes="{{info.sound.intro}}" class="introduction color-9e9e9e font-12" wx:else></rich-text>
+            </view>
+            <view class="text-right" bind:tap="unfoldHandle">
+                <text class="iconfont icon-xiala2 color-cacaca " wx:if="{{is_unfold }}"></text>
+                <text wx:else class="iconfont icon-xiala1 font-14 color-cacaca"></text>
+            </view>
+            <!-- 追剧 -->
+            <view class="padding-15-10 flex-vertical-space-between">
+                <view class="flex-vertical-center ">
+                    <image class="cover-image" src="{{drama.cover}}" />
+                    <view class="margin-left-10">
+                        <text class="font-14">{{drama.name}}</text>
+                        <text class="font-12 color-9e9e9e">
+                            {{drama.catalog_name}} 类型：{{drama.type_name}}
+                        </text>
+                        <text class="font-12 color-9e9e9e">更新至：{{drama.newest}}</text>
+                    </view>
+                </view>
+                <view>
+                    <van-button size="mini" color="#ED7760" class="follow-btn">
+                        <text class="iconfont icon-xihuan color-withe font-11"></text>
+                        <text class="font-11 color-withe margin-left-5">追剧</text>
+                    </van-button>
+                </view>
+            </view>
+        </view>
+        <!-- 评论 -->
+        <view wx:if="{{tabActive===1}}">
+            <van-empty description="暂无数据" wx:if="{{commentList.length===0}}" />
+            <view class="" wx:else></view>
+        </view>
+        <!-- 图片 -->
+        <view wx:if="{{tabActive===2}}">
+            <van-empty description="暂无数据" />
         </view>
     </view>
+    <van-dialog id="van-dialog" />
+    <van-toast id="van-toast" />
 </view>
