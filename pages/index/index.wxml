@@ -60,12 +60,12 @@
                         <text class="font-14">{{item.title}}</text>
                     </view>
                     <view class="flex-vertical-center color-9e9e9e font-14">
-                        <text class=" color-9e9e9e font-14">排行榜</text>
+                        <text class=" color-9e9e9e font-14">更多</text>
                         <text class="iconfont icon-arrow-left color-9e9e9e font-14"></text>
                     </view>
                 </view>
                 <view class="padding-0-15 flex-vertical-space-between">
-                    <view wx:for="{{item.objects_point}}" wx:key="id" wx:for-item="i">
+                    <view wx:for="{{item.objects_point}}" wx:key="id" wx:for-item="i" bindtap="LinkToDetail" data-id="{{i.id}}">
                         <image class="cover-pic" src="{{i.front_cover}}" mode="widthFix"></image>
                         <view class="soundstr" selectable="false" space="false" decode="false">
                             {{i.soundstr}}

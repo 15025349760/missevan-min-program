@@ -1,9 +1,9 @@
 {
   "usingComponents": {},
   "pages": [
-    "pages/detail/detail",
+    "pages/music-list/music-list",
     "pages/index/index",
-    "pages/music-list/music-list"
+    "pages/detail/detail"
   ],
 
   "window": {

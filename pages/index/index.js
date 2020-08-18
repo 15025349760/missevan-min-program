@@ -60,7 +60,7 @@ Page({
     });
   },
   LinkToDetail(e) {
-    // console.log(e.currentTarget.dataset.id);
+    console.log(e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: "/pages/detail/detail?id=" + id,
@@ -70,6 +70,9 @@ Page({
   onChange(event) {
     console.log(event.detail);
     if (event.detail.index === 0) {
+      wx.navigateTo({
+        url: "/pages/music-list/music-list",
+      });
     }
   },
 });

@@ -1,5 +1,5 @@
 <view class="">
-    <video class="video" id="myVideo" src="{{info.sound.soundurl}}" danmu-list="{{danmuList}}" vslide-gesture="{{true}}" binderror="videoErrorCallback" enable-auto-rotation="{{true}}" enable-danmu="{{true}}" danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls="{{true}}" picture-in-picture-mode="{{['push', 'pop']}}"></video>
+    <video class="video" id="myVideo" src="{{info.sound.soundurl}}" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls picture-in-picture-mode="{{['push', 'pop']}}" bindenterpictureinpicture='bindVideoEnterPictureInPicture' bindleavepictureinpicture='bindVideoLeavePictureInPicture' poster="{{drama.cover}}"></video>
     <!-- 发弹幕 -->
     <view class="flex-vertical-space-between danmu-wrap ">
         <van-field danmu="{{ danmu }}" placeholder="来点弹幕啊~" border="{{ false }}" bind:change="danmuChange" />
@@ -36,21 +36,23 @@
         <van-tab title="评论" />
         <van-tab title="图片" />
     </van-tabs>
-    <view>
+    <view style="padding-bottom:50px">
         <!-- 简介 -->
-        <view class="padding-10 border-bottom-e8" wx:if="{{tabActive===0}}">
-            <view>
-                <text class="font-13">{{info.sound.soundstr}}</text>
-                <view></view>
-            </view>
-            <view class="">
-                <text class="color-9e9e9e font-12">简介：</text>
-                <rich-text nodes="{{info.sound.intro}}" class="color-9e9e9e font-12" wx:if="{{is_unfold }}"></rich-text>
-                <rich-text nodes="{{info.sound.intro}}" class="introduction color-9e9e9e font-12" wx:else></rich-text>
-            </view>
-            <view class="text-right" bind:tap="unfoldHandle">
-                <text class="iconfont icon-xiala2 color-cacaca " wx:if="{{is_unfold }}"></text>
-                <text wx:else class="iconfont icon-xiala1 font-14 color-cacaca"></text>
+        <view class="padding-10 " wx:if="{{tabActive===0}}">
+            <view class="border-bottom-e8">
+                <view>
+                    <text class="font-13">{{info.sound.soundstr}}</text>
+                    <view></view>
+                </view>
+                <view class="">
+                    <text class="color-9e9e9e font-12">简介：</text>
+                    <rich-text nodes="{{info.sound.intro}}" class="color-9e9e9e font-12" wx:if="{{is_unfold }}"></rich-text>
+                    <rich-text nodes="{{info.sound.intro}}" class="introduction color-9e9e9e font-12" wx:else></rich-text>
+                </view>
+                <view class="text-right" bind:tap="unfoldHandle">
+                    <text class="iconfont icon-xiala2 color-cacaca " wx:if="{{is_unfold }}"></text>
+                    <text wx:else class="iconfont icon-xiala1 font-14 color-cacaca"></text>
+                </view>
             </view>
             <!-- 追剧 -->
             <view class="padding-15-10 flex-vertical-space-between">
@@ -71,16 +73,86 @@
                     </van-button>
                 </view>
             </view>
+            <!-- 参演cv -->
+            <view>
+                <view class="flex-center">
+                    <view class="title-border"></view>
+                    <view class="font-12 cv-title">参演CV({{cvs.length}})</view>
+                    <view class="title-border"></view>
+                </view>
+                <view class="flex-start ">
+                    <block wx:for="{{cvs}}" key="cv">
+                        <view class="flex-horizon-center padding-top-10" style="width:25%">
+                            <image src="{{item.cvinfo.icon}}" class="cvs-icon" />
+                            <view class="font-12 margin-top-5">{{item.cvinfo.name}}</view>
+                            <view class="font-10 color-9e9e9e">{{item.character}}</view>
+                            <view class="font-10 color-9e9e9e cv-group">{{item.cvinfo.group}}</view>
+                        </view>
+                    </block>
+                </view>
+            </view>
         </view>
         <!-- 评论 -->
         <view wx:if="{{tabActive===1}}">
             <van-empty description="暂无数据" wx:if="{{commentList.length===0}}" />
-            <view class="" wx:else></view>
+            <view class="" wx:else>
+                <block wx:for="{{commentList}}" wx:key="*this">
+                    <view class="flex-top ">
+                        <view class="user-icon-wrap">
+                            <image class="user-icon" src="{{item.icon}}" />
+                        </view>
+                        <view class=" comment-item-right">
+                            <view class="flex-vertical-space-between">
+                                <view>
+                                    <text class="color-757575 font-12">{{item.username}}</text>
+                                    <view class="color-b3b3b3 font-11">{{item.ctime}}</view>
+                                </view>
+                                <view style="padding-right:10px">
+                                    <view wx:if="{{item.like_num>0}}">
+                                        <text class="iconfont icon-setting color-e63c3c"></text>
+                                        <text class="font-11 color-e63c3c">{{item.like_num}}</text>
+                                    </view>
+                                    <view wx:else>
+                                        <text class="iconfont icon-zandianzan color-a9a9a9"></text>
+                                        <text class="font-11 color-a9a9a9">{{item.like_num}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="font-13 " style="padding:8px 8px 10px 0">
+                                {{item.comment_content}}
+                            </view>
+                            <!-- 回复 -->
+                            <view wx:if="{{item.subcomments.length>0}}" class="subcomments">
+                                <block wx:for="{{item.subcomments}}" wx:for-item="i" key="subcomments">
+                                    <view class="flex-vertical-space-between padding-top-5">
+                                        <view class="font-11 color-3d3d3d">{{i.username}}</view>
+                                        <view class="font-11 color-757575">{{i.ctime}}</view>
+                                    </view>
+                                    <view class="color-b3b3b3 font-12 padding-top-5">
+                                        {{i.comment_content}}
+                                    </view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+            <view class="flex-center margin-top-35">
+                <van-button class="download-btn" color="#c14a3f" size="small">
+                    下载客户端，查看更多评论
+                </van-button>
+            </view>
         </view>
         <!-- 图片 -->
         <view wx:if="{{tabActive===2}}">
             <van-empty description="暂无数据" />
         </view>
+    </view>
+    <!-- fooder -->
+    <view class="flex-vertical-space-around padding-15">
+        <view class="font-14 color-9e9e9e">客户端</view>
+        <view class="iconfont icon-adbddb"></view>
+        <view class="font-14 color-9e9e9e" bindtap="goTop">返回顶部</view>
     </view>
     <van-dialog id="van-dialog" />
     <van-toast id="van-toast" />

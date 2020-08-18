@@ -1,7 +1,22 @@
 import Dialog from "../../miniprogram_npm/@vant/weapp/dialog/dialog";
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
 
+function getRandomColor() {
+  const rgb = [];
+  for (let i = 0; i < 3; ++i) {
+    let color = Math.floor(Math.random() * 256).toString(16);
+    color = color.length === 1 ? "0" + color : color;
+    rgb.push(color);
+  }
+  return "#" + rgb.join("");
+}
 Page({
+  onShareAppMessage() {
+    return {
+      title: "video",
+      path: "page/component/pages/video/video",
+    };
+  },
   onReady() {
     this.videoContext = wx.createVideoContext("myVideo");
   },
@@ -19,22 +34,27 @@ Page({
       withShareTicket: true,
     });
   },
+  danmu: "", //与输入框双向绑定的值
   data: {
-    id: 2306334,
+    id: 1189390,
     info: "",
     drama: "",
     tabActive: 0,
     is_like: false,
     is_unfold: false, //控制简介是否展开
-    danmu: "",
-    danmulist: [
-      {
-        text: "第一条弹幕",
+    danmuList: [{
+        text: "我是第一条弹幕",
         color: "#ff0000",
         time: 1,
       },
+      {
+        text: "我是第二条",
+        color: "#ff00ff",
+        time: 3,
+      },
     ],
     commentList: [],
+    cvs: [],
   },
 
   getsoundData() {
@@ -56,8 +76,7 @@ Page({
   getdramabysound() {
     let _this = this;
     wx.request({
-      url:
-        "https://www.missevan.com/dramaapi/getdramabysound?sound_id=" +
+      url: "https://www.missevan.com/dramaapi/getdramabysound?sound_id=" +
         _this.data.id,
 
       header: {
@@ -66,6 +85,7 @@ Page({
       success(res) {
         _this.setData({
           drama: res.data.info.drama,
+          cvs: res.data.info.cvs,
         });
       },
     });
@@ -78,7 +98,7 @@ Page({
         order: 1,
         pagesize: 10,
         type: 1,
-        eId: 2306334,
+        eId: _this.data.id,
         p: 1,
       },
       header: {
@@ -93,11 +113,8 @@ Page({
     });
   },
   danmuChange(event) {
-    let _this = this;
     let val = event.detail;
-    this.setData({
-      danmu: val,
-    });
+    this.danmu = val;
   },
   // 发弹幕
   sendDanmu() {
@@ -105,29 +122,13 @@ Page({
     if (this.data.danmu === "") {
       Toast("不能发送空白文本");
     } else {
-      // this.data.danmulist.push(_this.data.danmu)
-      // this.setData({
-      //   danmulist: _this.data.danmulist,
-      //   danmu: "",
-      // });
       this.videoContext.sendDanmu({
-        text: this.data.danmu,
-        color: "#f00",
+        text: this.danmu,
+        color: getRandomColor(),
       });
+    }
+  },
 
-      console.log(this.data.danmulist);
-    }
-  },
-  //随机颜色
-  getRandomColor() {
-    let rgb = [];
-    for (let i = 0; i < 3; ++i) {
-      let color = Math.floor(Math.random() * 256).toString(16);
-      color = color.length == 1 ? "0" + color : color;
-      rgb.push(color);
-    }
-    return "#" + rgb.join("");
-  },
   //喜欢
   isLikeHandle() {
     let _this = this;
@@ -149,17 +150,30 @@ Page({
   //下载
   downloadHandle() {
     Dialog.confirm({
-      title: "请先下载客户端",
-      message: "下载客户端发现更多有趣内容>W<",
-      confirmButtonText: "现在下载",
-      cancelButtonText: "我知道了",
-    })
+        title: "请先下载客户端",
+        message: "下载客户端发现更多有趣内容>W<",
+        confirmButtonText: "现在下载",
+        cancelButtonText: "我知道了",
+      })
       .then(() => {
         // on confirm
       })
       .catch(() => {
         // on cancel
       });
+  },
+  //回到顶部
+  goTop() {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+      });
+    } else {
+      wx.showModal({
+        title: "提示",
+        content: "当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。",
+      });
+    }
   },
   //简介展开收起
   unfoldHandle() {

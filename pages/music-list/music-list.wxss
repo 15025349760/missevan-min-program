@@ -1,0 +1,37 @@
+impo .title-border {
+    width: 4px;
+    height: 19px;
+    background: black;
+    border-radius: 4px;
+}
+
+.albums-item {
+    width: 50%;
+    /* background: url("../../images//album-cover.efe70663.png"); */
+}
+
+.albums-cover-wrap {
+    position: relative;
+}
+
+.albums-cover-bg {
+    width: 183px;
+    height: 180px;
+}
+
+.albums-cover {
+    width: 165px;
+    height: 165px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 6px;
+}
+
+.music-count {
+    position: absolute;
+    z-index: 4;
+    bottom: 17px;
+    right: 34px;
+}
