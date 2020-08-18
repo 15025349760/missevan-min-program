@@ -1,11 +1,9 @@
 import Dialog from "../../miniprogram_npm/@vant/weapp/dialog/dialog";
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
-
+import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
 
 Page({
   onReady() {
-    this.videoContext = wx.createVideoContext('myVideo')
+    this.videoContext = wx.createVideoContext("myVideo");
   },
   onLoad(options) {
     let id = options.id;
@@ -28,13 +26,15 @@ Page({
     tabActive: 0,
     is_like: false,
     is_unfold: false, //控制简介是否展开
-    danmu: '',
-    danmulist: [{
-      text: '第一条弹幕',
-      color: '#ff0000',
-      time: 1
-    }],
-    commentList: []
+    danmu: "",
+    danmulist: [
+      {
+        text: "第一条弹幕",
+        color: "#ff0000",
+        time: 1,
+      },
+    ],
+    commentList: [],
   },
 
   getsoundData() {
@@ -56,7 +56,8 @@ Page({
   getdramabysound() {
     let _this = this;
     wx.request({
-      url: "https://www.missevan.com/dramaapi/getdramabysound?sound_id=" +
+      url:
+        "https://www.missevan.com/dramaapi/getdramabysound?sound_id=" +
         _this.data.id,
 
       header: {
@@ -78,36 +79,31 @@ Page({
         pagesize: 10,
         type: 1,
         eId: 2306334,
-        p: 1
+        p: 1,
       },
       header: {
         "content-type": "application/json", // 默认值
       },
       success(res) {
-        console.log(res)
-        // let comments = res.data.successVal.comment.datas
-        console.log(res.data.successVal)
         _this.setData({
           commentList: res.data.successVal.comment.Datas,
         });
-        console.log(_this.data.commentList)
+        console.log(_this.data.commentList);
       },
     });
-
   },
   danmuChange(event) {
     let _this = this;
-    let val = event.detail
+    let val = event.detail;
     this.setData({
       danmu: val,
     });
-
   },
   // 发弹幕
   sendDanmu() {
     let _this = this;
     if (this.data.danmu === "") {
-      Toast("不能发送空白文本")
+      Toast("不能发送空白文本");
     } else {
       // this.data.danmulist.push(_this.data.danmu)
       // this.setData({
@@ -116,22 +112,21 @@ Page({
       // });
       this.videoContext.sendDanmu({
         text: this.data.danmu,
-        color: "#f00"
-      })
+        color: "#f00",
+      });
 
-      console.log(this.data.danmulist)
+      console.log(this.data.danmulist);
     }
-
   },
   //随机颜色
   getRandomColor() {
-    let rgb = []
+    let rgb = [];
     for (let i = 0; i < 3; ++i) {
-      let color = Math.floor(Math.random() * 256).toString(16)
-      color = color.length == 1 ? '0' + color : color
-      rgb.push(color)
+      let color = Math.floor(Math.random() * 256).toString(16);
+      color = color.length == 1 ? "0" + color : color;
+      rgb.push(color);
     }
-    return '#' + rgb.join('')
+    return "#" + rgb.join("");
   },
   //喜欢
   isLikeHandle() {
@@ -154,11 +149,11 @@ Page({
   //下载
   downloadHandle() {
     Dialog.confirm({
-        title: "请先下载客户端",
-        message: "下载客户端发现更多有趣内容>W<",
-        confirmButtonText: "现在下载",
-        cancelButtonText: "我知道了",
-      })
+      title: "请先下载客户端",
+      message: "下载客户端发现更多有趣内容>W<",
+      confirmButtonText: "现在下载",
+      cancelButtonText: "我知道了",
+    })
       .then(() => {
         // on confirm
       })
@@ -179,7 +174,7 @@ Page({
       tabActive: event.detail.index,
     });
     if (event.detail.index === 1) {
-      this.getcomment()
+      this.getcomment();
     }
   },
 });
