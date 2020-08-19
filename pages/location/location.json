@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+        "van-cell": "@vant/weapp/cell/index",
+        "van-cell-group": "@vant/weapp/cell-group/index",
+        "van-switch": "@vant/weapp/switch/index",
+        "van-popup": "@vant/weapp/popup/index",
+        "van-field": "@vant/weapp/field/index",
+        "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+        "van-dropdown-item": "@vant/weapp/dropdown-item/index"
+    }
+}

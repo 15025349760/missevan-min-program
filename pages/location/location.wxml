@@ -1,0 +1,24 @@
+<view class="">
+    <!-- 经度106.596231,纬度29.547991 -->
+    <map id="map" longitude="{{lng}}" latitude="{{lat}}" scale="14" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" enable-3D="{{is_3d}}" show-location style="width: 100%; height: 300px;" enable-overlooking="{{true}}" bindmarkertap="clickMarker"></map>
+    <view>
+        <van-cell title="是否开启3d">
+            <van-switch checked="{{ is_3d }}" bind:change="threeDHandle" size="24px" />
+        </van-cell>
+    </view>
+    <view>
+        <van-cell title="选择地点" is-link bind:tap="chooseLocation"></van-cell>
+    </view>
+    <view class="flex-vertical-center padding-0-15">
+        <view class="font-14">已选择地点</view>
+        <van-dropdown-menu>
+            <van-dropdown-item value="{{ value1 }}" options="{{ addresslist }}" bind:change="dropdownChange" />
+        </van-dropdown-menu>
+    </view>
+    <van-popup show="{{ show_popup }}" bind:close="onClose" position="top">
+        <van-cell-group>
+            <van-field value="{{ field_lng }}" placeholder="重新输入纬度" border="{{ false }}" bind:change="FieldHandle" data-type="lng" />
+            <van-field value="{{ field_lat }}" placeholder="重新输入纬度" border="{{ false }}" bind:change="FieldHandle" data-type="lat" />
+        </van-cell-group>
+    </van-popup>
+</view>

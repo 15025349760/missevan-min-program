@@ -1,0 +1,23 @@
+<view class="">
+    <!-- 头部 -->
+    <view class="header-wrap">
+        <view class="front-cover-wrap-bg" style="background-image:url('{{info.album.front_cover}}')"></view>
+        <view class="header-content flex-top">
+            <view>
+                <image src="{{info.album.front_cover}}" class="front-cover" />
+            </view>
+            <view class="margin-left-20">
+                <view class="font-15 color-white album-title">{{info.album.title}}</view>
+                <view class="flex-vertical-center margin-top-25 ">
+                    <image class="owner-icon" src="{{info.owner.boardiconurl2===''?info.owner.iconurl2:info.owner.boardiconurl2}}"></image>
+                    <view class="font-15 color-white margin-left-5">{{info.owner.username}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 列表 -->
+    <view>
+        <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+        <view class="loading" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    </view>
+</view>

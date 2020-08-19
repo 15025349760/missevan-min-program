@@ -20,5 +20,11 @@ Page({
             },
         });
     },
+    linkToAlbum(e) {
+        let id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: "/pages/album-detail/album-detail?id=" + id,
+        });
+    }
 
 })
