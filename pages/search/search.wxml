@@ -1,0 +1,3 @@
+<view class="">
+    <header isSearch='{{1}}' bind:myevent="onMyEvent" icon-gengduo="iconfont icon-gengduo " icon-sousuo="iconfont icon-sousuo"></header>
+</view>

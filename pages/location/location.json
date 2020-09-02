@@ -6,6 +6,8 @@
         "van-popup": "@vant/weapp/popup/index",
         "van-field": "@vant/weapp/field/index",
         "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-        "van-dropdown-item": "@vant/weapp/dropdown-item/index"
+        "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+        "van-toast": "@vant/weapp/toast/index",
+        "van-button": "@vant/weapp/button/index"
     }
 }

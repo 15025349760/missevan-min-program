@@ -1,26 +1,32 @@
 .van-tabs__line {
   background-color: var(--tabs-bottom-bar-color, #000) !important;
 }
+
 .swiper {
   height: 150px;
   width: 100%;
 }
+
 .swiper-item {
   height: 100%;
   width: 100%;
 }
+
 .swiper-pic {
   height: 100%;
   width: 100%;
 }
+
 .subhead {
   /* background: url("https://s0.missevan.com/assets/m/images/build/sprite-icons-catalog@2x.375660c1.png"); */
 }
+
 .cover-pic {
   width: 106px;
   height: 106px;
   border-radius: 4px;
 }
+
 .soundstr {
   width: 102px;
   height: 36px;
@@ -40,4 +46,9 @@
   margin: 4px 0;
   word-break: break-all;
   font-size: 12px;
+}
+
+.index-header {
+  position: sticky;
+  z-index: 200;
 }

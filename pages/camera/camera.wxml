@@ -1,0 +1,7 @@
+<view>
+    <view class="">
+        <van-button bind:tap="upload">选择图片</van-button>
+    </view>
+    <!-- <image class="" src="{{url}}" /> -->
+    <van-button bind:tap="downloadFile">下载</van-button>
+</view>

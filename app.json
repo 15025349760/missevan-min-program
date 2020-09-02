@@ -2,16 +2,17 @@
   "usingComponents": {},
 
   "pages": [
+    "pages/search/search",
+    "pages/index/index",
     "pages/location/location",
+    "pages/camera/camera",
     "pages/album-detail/album-detail",
     "pages/music-list/music-list",
-    "pages/index/index",
     "pages/detail/detail"
-
   ],
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "你的位置信息将用于小程序定位"
 
     }
   },
@@ -22,5 +23,13 @@
     "navigationBarTextStyle": "black"
   },
 
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.7",
+      "provider": "wx50b5593e81dd937a"
+    }
+  }
+
+
 }

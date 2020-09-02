@@ -1,3 +1,5 @@
+import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
+
 //<!-- 经度106.596879,纬度29.548630 -->   106.566220,29.498687
 Page({
     onShareAppMessage() {
@@ -7,8 +9,8 @@ Page({
         }
     },
     data: {
-        lng: '106.596879',
-        lat: "29.548630",
+        lng: '', //默认地址上新街
+        lat: "",
         markers: [{ //标记点
                 iconPath: "../../images/location-marker.png",
                 id: 0,
@@ -56,11 +58,31 @@ Page({
             },
         ],
         value1: 0,
+        endPoint: {}, //终点
+        endPoint_name: "选择终点",
+        startPoint: {}, //起点
+        startPoint_name: "选择起点（默认当前位置）",
+
     },
     onLoad() {
+        let _this = this
         this.getLocation()
+        const timer = setTimeout(() => {
+            if (_this.data.lng !== "" && _this.data.lat !== "") {
+                clearInterval(timer);
+                Toast.clear();
+            } else {
+                Toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    loadingType: 'spinner',
+                });
+            }
+        })
+
         // this.chooseLocation()
     },
+
     //获取当前位置信息
     getLocation() {
         let _this = this
@@ -68,6 +90,7 @@ Page({
             type: 'wgs84',
             success(res) {
                 console.log(res)
+                Toast.success('获取定位成功');
                 let current_address = {
                     text: '当前位置',
                     value: 0,
@@ -81,10 +104,17 @@ Page({
                     lat: res.latitude,
                 })
                 console.log(_this.data.addresslist)
+            },
+            fail: function (errInfo) {
+                Toast.fail('获取定位失败');
+                console.info(errInfo)
             }
+
         })
     },
-    chooseLocation() {
+    //选择地点
+    chooseLocation(e) {
+        console.log(e);
         let _this = this
         wx.chooseLocation({
             success: function (res) {
@@ -110,10 +140,75 @@ Page({
                     lng: res.longitude,
                     lat: res.latitude,
                     markers: _this.data.markers,
-                    addresslist: _this.data.addresslist
+                    addresslist: _this.data.addresslist,
+
                 })
+                let isend = e.currentTarget.dataset.isend
+
+                if (parseInt(isend)) { //判断是起点还是终点
+                    _this.setData({
+                        endPoint: {
+                            'name': res.name,
+                            'latitude': res.latitude,
+                            'longitude': res.longitude
+                        },
+                        endPoint_name: res.name
+                    })
+                } else {
+                    _this.setData({
+                        startPoint: {
+                            'name': res.name,
+                            'latitude': res.latitude,
+                            'longitude': res.longitude
+                        },
+                        startPoint_name: res.name
+                    })
+                }
+
             },
         })
+    },
+    //打开地图
+    openLocation() {
+        wx.getLocation({
+            type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+            success(res) {
+                const latitude = res.latitude
+                const longitude = res.longitude
+                wx.openLocation({
+                    latitude,
+                    longitude,
+                    scale: 18
+                })
+            }
+        })
+    },
+    //路线规划
+    pathHandle() {
+        let plugin = requirePlugin('routePlan');
+        let key = 'TWLBZ-W6UCX-LPR4F-7AP3E-6GSJ5-WTB4U'; //使用在腾讯位置服务申请的key
+        let referer = '二叽不服气'; //调用插件的app的名称
+        console.log(this.data.endPoint)
+
+        if (Object.keys(this.data.endPoint).length <= 0) {
+            Toast.fail("请选择终点")
+        } else {
+            let endPoint = JSON.stringify(this.data.endPoint);
+            let startPoint = JSON.stringify(this.data.startPoint);
+            console.log(Object.keys(startPoint).length)
+            if (Object.keys(startPoint).length >= 0) { //判断有没有起点
+                console.log(111)
+                wx.navigateTo({
+                    url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+                });
+            } else {
+                wx.navigateTo({
+                    url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&startPoint=' + startPoint + '&endPoint=' + endPoint
+                });
+            }
+
+        }
+
     },
 
     //点击marker触发的事件

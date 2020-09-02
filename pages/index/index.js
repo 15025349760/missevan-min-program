@@ -66,6 +66,7 @@ Page({
       url: "/pages/detail/detail?id=" + id,
     });
   },
+
   //事件处理函数
   onChange(event) {
     console.log(event.detail);
@@ -74,5 +75,12 @@ Page({
         url: "/pages/music-list/music-list",
       });
     }
+  },
+  //传值子组件
+  get_emit: function (e) {
+    console.log(e)
+    this.setData({
+      is_show: e.detail.val
+    })
   },
 });

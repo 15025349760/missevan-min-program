@@ -1,3 +1,88 @@
 .van-tabs__line {
   background-color: var(--tabs-bottom-bar-color, #000) !important;
 }
+
+.van-popup {
+  background: black;
+}
+
+.popup-content {
+  margin-top: 45px;
+
+}
+
+.default-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.border-bottom-3D3D3D {
+  border-bottom: #3D3D3D;
+}
+
+.background-back {
+  width: 100%;
+  box-sizing: border-box;
+  background: #000;
+  padding: 5px 10px;
+}
+
+.popup {
+  background: #000;
+}
+
+.search-input-wrap {
+  widows: 100%;
+}
+
+.search-input {
+  width: 70%;
+  background: white;
+  padding: 3px 5px;
+  border-radius: 2px;
+  margin-right: 15px
+}
+
+.background-back /deep/ .van-field {
+  padding: 0px !important;
+
+}
+
+
+.padding-10 {
+  padding: 10px;
+}
+
+.color-white {
+  color: #ffffff;
+}
+
+.font-22 {
+  font-size: 22px;
+}
+
+.flex-vertical-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.search-label {
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.margin-right-15 {
+  margin-right: 15px;
+}
+
+.field-index--van-field {
+  padding: 1px 10px 1px 0;
+
+}

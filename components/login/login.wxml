@@ -1,0 +1,6 @@
+<view class="">
+    <text class="iconfont icon-gengduo color-white font-22" bind:tap="showLoginHandle"></text>
+    <van-popup show="{{ show }}" position="right" custom-style="height: 100%; width:100%" bind:close="onClose" overlay="{{false}}" class="popup">
+        ssss
+    </van-popup>
+</view>
