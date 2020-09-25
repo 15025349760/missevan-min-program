@@ -1,6 +1,5 @@
 <view class="">
-    <text class="iconfont icon-gengduo color-white font-22" bind:tap="showLoginHandle"></text>
-    <van-popup show="{{ show }}" position="right" custom-style="height: 100%; width:100%" bind:close="onClose" overlay="{{false}}" class="popup">
-        ssss
-    </van-popup>
+    <view bindtap='previewImg' class="flex-horizon-center ">
+        <canvas style="width: 200px;height: 200px;background:#f1f1f1;" canvas-id="canvas" />
+    </view>
 </view>

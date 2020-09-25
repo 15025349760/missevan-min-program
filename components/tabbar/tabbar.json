@@ -1,0 +1,11 @@
+{
+    "component": false,
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index",
+        "van-sticky": "@vant/weapp/sticky/index",
+        "i-tab-bar": "../../iview/tab-bar/index",
+        "i-tab-bar-item": "../../iview/tab-bar-item/index"
+    }
+}

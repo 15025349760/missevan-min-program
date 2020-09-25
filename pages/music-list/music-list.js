@@ -16,7 +16,7 @@ Page({
                 _this.setData({
                     albums: res.data.albums,
                 });
-                console.log(_this.data.albums);
+
             },
         });
     },

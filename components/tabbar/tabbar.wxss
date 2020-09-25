@@ -1,0 +1,3 @@
+.van-tabs__line {
+    background-color: var(--tabs-bottom-bar-color, #000) !important;
+}

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "van-sticky": "@vant/weapp/sticky/index",
+        "tabbar": "../../components/tabbar/tabbar",
+        "header": "../../components/header/header"
+    }
+}

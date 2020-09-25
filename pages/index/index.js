@@ -67,15 +67,19 @@ Page({
     });
   },
 
-  //事件处理函数
-  onChange(event) {
-    console.log(event.detail);
-    if (event.detail.index === 0) {
-      wx.navigateTo({
-        url: "/pages/music-list/music-list",
-      });
-    }
-  },
+  // //事件处理函数
+  // onChange(event) {
+  //   console.log(event.detail);
+  //   if (event.detail.index === 0) {
+  //     wx.navigateTo({
+  //       url: "/pages/music-list/music-list",
+  //     });
+  //   } else if (event.detail.index === 2) {
+  //     wx.navigateTo({
+  //       url: "/pages/classify/classify",
+  //     });
+  //   }
+  // },
   //传值子组件
   get_emit: function (e) {
     console.log(e)

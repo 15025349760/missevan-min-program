@@ -2,9 +2,8 @@
     <van-sticky z-index="{{200}}">
         <view wx:if="{{isSearch}}">
             <view class="background-back flex-vertical-center">
-                <!-- <van-search value="{{ key_words }}" placeholder="请输入搜索关键词" background="transparent" bind:cancel="onCancel" /> -->
-                <input type="text" class="search-input" />
-                <view class="color-white search-label">取消</view>
+                <input type="text" class="search-input" bindinput="inputOnChange" data-words="key_words" value="{{ key_words }}" />
+                <view class="color-white search-label" bindtap="backHome">取消</view>
                 <view class="iconfont icon-gengduo color-white font-22" bind:tap="showLoginHandle"></view>
             </view>
         </view>
@@ -19,7 +18,7 @@
         </view>
     </van-sticky>
     <!-- 登录弹框 -->
-    <van-popup show="{{ show }}" position="right" custom-style="height: 100%; width:100%" bind:close="onClose" overlay="{{false}}" class="popup" style="background: #000">
+    <van-popup show="{{ show }}" position="right" custom-style="height: 100%; width:100%;  background: #000 !important;" bind:close="onClose" overlay="{{false}}" class="popup">
         <view class="popup-content">
             <view class="background-3D3D3D padding-15 flex-vertical-space-between ">
                 <view class="flex-vertical-center">

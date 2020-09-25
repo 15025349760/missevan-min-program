@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vant/weapp": "^1.4.3"
+    "@vant/weapp": "^1.4.3",
+    "weapp-qrcode": "^1.0.0"
   }
 }

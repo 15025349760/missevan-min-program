@@ -1,0 +1,7 @@
+<view class="">
+    <van-tabs active="{{tabActive}}" bind:change="onChange" class="tab-bar">
+        <van-tab title="音单" name="a" />
+        <van-tab title="推荐" name="b" />
+        <van-tab title="分类" name="c" />
+    </van-tabs>
+</view>

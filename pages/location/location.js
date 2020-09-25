@@ -1,6 +1,12 @@
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
-
+// import drawQrcode from '../../utils/weapp.qrcode.min.js'
+const QR = require('../../utils/weapp.qrcode')
 //<!-- 经度106.596879,纬度29.548630 -->   106.566220,29.498687
+const W = wx.getSystemInfoSync().windowWidth;
+const rate = 750.0 / W;
+// 300rpx 在6s上为 150px
+const qrcodeWidth = 300 / rate;
+
 Page({
     onShareAppMessage() {
         return {
@@ -79,9 +85,17 @@ Page({
                 });
             }
         })
+        // drawQrcode({
+        //     width: 200,
+        //     height: 200,
+        //     canvasId: 'myQrcode',
+        //     text: 'https://github.com/yingye'
+        // })
 
         // this.chooseLocation()
     },
+
+
 
     //获取当前位置信息
     getLocation() {

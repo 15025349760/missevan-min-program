@@ -1,0 +1,22 @@
+page {
+    background: #F5F5F5
+}
+
+.grid-list-wrap {
+    padding: 15px 5px 15px 15px
+}
+
+.item-pic {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+
+.grid-item {
+    width: 109px;
+    height: 104px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    margin: 0 9px 10px 0;
+    border-radius: 4px;
+    background: #ffffff;
+}

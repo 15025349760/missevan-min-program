@@ -1,6 +1,8 @@
 {
 
-    "usingComponents": {},
+    "usingComponents": {
+
+    },
     "navigationBarTitleText": "音单",
     "enablePullDownRefresh": false
 

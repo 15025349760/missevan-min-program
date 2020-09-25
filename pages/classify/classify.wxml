@@ -1,0 +1,12 @@
+<view class="">
+    <header icon-gengduo="iconfont icon-gengduo " icon-sousuo="iconfont icon-sousuo"></header>
+    <tabbar actionIndex='c'></tabbar>
+    <view class="flex-start grid-list-wrap">
+        <view wx:for="{{gridList}}" wx:key="grid">
+            <view class="grid-item flex-horizon-center ">
+                <image class="item-pic" src="{{item.pic}}"></image>
+                <view class="font-14">{{item.title}}</view>
+            </view>
+        </view>
+    </view>
+</view>

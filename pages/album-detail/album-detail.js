@@ -15,7 +15,8 @@ Page({
         pageNo: 1, // 设置加载的第几次，默认是第一次  
         pageSize: 10, //返回数据的个数  
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
-        searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏  
+        searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏  
+        list: []
     },
     getSoundalllist() {
         let _this = this
@@ -26,8 +27,10 @@ Page({
             },
             success(res) {
                 _this.setData({
-                    info: res.data.info
+                    info: res.data.info,
+                    list: res.data.info.sounds
                 })
+                console.log(_this.data.list)
 
             }
         })

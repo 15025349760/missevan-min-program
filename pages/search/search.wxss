@@ -1,0 +1,20 @@
+.search-item {
+    border: 1px solid #A4A4A4;
+    color: #B0B0B0;
+    border-radius: 30px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin: 10px 5px 0 10px;
+}
+
+.color-eb7d7d {
+    color: #EB7D7D
+}
+
+.color-e0e0e0 {
+    color: #E0E0E0;
+}
+
+.margin-right-10 {
+    margin-right: 10px;
+}

@@ -7,8 +7,8 @@
 }
 
 .popup-content {
-  margin-top: 45px;
-
+  margin-top: 37px;
+  /* background: #000; */
 }
 
 .default-icon {
@@ -28,16 +28,14 @@
   padding: 5px 10px;
 }
 
-.popup {
-  background: #000;
-}
+
 
 .search-input-wrap {
   widows: 100%;
 }
 
 .search-input {
-  width: 70%;
+  width: 74%;
   background: white;
   padding: 3px 5px;
   border-radius: 2px;
@@ -46,9 +44,7 @@
 
 .background-back /deep/ .van-field {
   padding: 0px !important;
-
 }
-
 
 .padding-10 {
   padding: 10px;

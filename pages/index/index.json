@@ -5,6 +5,7 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "header": "../../components/header/header",
-    "van-sticky": "@vant/weapp/sticky/index"
+    "van-sticky": "@vant/weapp/sticky/index",
+    "tabbar": "../../components/tabbar/tabbar"
   }
 }

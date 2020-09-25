@@ -1,0 +1,9 @@
+<view class="">
+    <view bindtap='previewImg' class="flex-horizon-center ">
+        <canvas style="width: 200px;height: 200px;background:#f1f1f1;" canvas-id="mycanvas" />
+    </view>
+    <view>
+        <canvas style="width: 170px; height:170px;" canvas-id="ctx"></canvas>
+    </view>
+    <button bindtap="draw">从相册中选择图片</button>
+</view>

@@ -1,5 +1,10 @@
+var api = require("./API/api")
 //app.js
 App({
+  request: { //这里配置我们需要的方法
+    post: api.post,
+    get: api.get,
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync("logs") || [];

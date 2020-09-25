@@ -1,3 +1,32 @@
 <view class="">
-    <header isSearch='{{1}}' bind:myevent="onMyEvent" icon-gengduo="iconfont icon-gengduo " icon-sousuo="iconfont icon-sousuo"></header>
+    <header isSearch='{{1}}' bind:myevent="onMyEvent" icon-gengduo="iconfont icon-gengduo " icon-sousuo="iconfont icon-sousuo" bind:keyWords="getSuggest"></header>
+    <!-- 当输入框没有内容时，热门搜索列表 -->
+    <view wx:if="{{keyWords===''}}">
+        <view class="padding-0-10 ">
+            <view class="color-333333 padding-10-0 font-14 border-bottom-ed">热门搜索</view>
+        </view>
+        <view class="padding-0-10">
+            <block wx:for="{{hot_search}}" wx:key="*this" class="flex-vertical-center">
+                <view class="search-item font-12" bindtap="SearchDetail" data-item="{{item}}">
+                    {{item.key}}
+                </view>
+            </block>
+        </view>
+    </view>
+    <!-- 当输入框有内容时，关键词结果列表 -->
+    <view wx:else>
+        <view class="padding-0-10 ">
+            <view class="color-333333 padding-10-0 font-14 border-bottom-ed">
+                搜索“
+                <text class="color-eb7d7d">{{keyWords}}</text>
+                ”
+            </view>
+        </view>
+        <view class="padding-0-10">
+            <view wx:for="{{keyWordsList}}" wx:key="id" wx:for-item="item" class="flex-vertical-center padding-10-0">
+                <view class="iconfont icon-sousuo1 color-e0e0e0 margin-right-10"></view>
+                <view class="font-14 color-333333">{{item}}</view>
+            </view>
+        </view>
+    </view>
 </view>

@@ -3,11 +3,7 @@
     <!-- 头部 -->
     <view>
         <header icon-gengduo="iconfont icon-gengduo " icon-sousuo="iconfont icon-sousuo"></header>
-        <van-tabs active="{{tabActive }}" bind:change="onChange" class="tab-bar">
-            <van-tab title="音单" />
-            <van-tab title="推荐" />
-            <van-tab title="分类" />
-        </van-tabs>
+        <tabbar actionIndex='b'></tabbar>
     </view>
     <!-- banner -->
     <view class="">

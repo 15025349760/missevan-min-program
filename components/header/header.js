@@ -1,10 +1,12 @@
+var app = getApp();
 Component({
   data: {
     show: false,
     key_words: ""
   },
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
+    styleIsolation: 'apply-shared'
   },
   externalClasses: ['icon-sousuo', 'icon-class', 'icon-gengduo', 'font-22', 'margin-right-15'],
   properties: {
@@ -14,6 +16,10 @@ Component({
     }
   },
   methods: {
+    inputOnChange(e) {
+      let keyWords = e.detail.value
+      this.triggerEvent('keyWords', keyWords)
+    },
     showLoginHandle(e) {
       let _this = this
       this.setData({
@@ -32,6 +38,12 @@ Component({
         show: false
       });
     },
-  }
+    backHome() {
+      wx.navigateTo({
+        url: "/pages/index/index",
+      });
+    }
+  },
+
 
 });

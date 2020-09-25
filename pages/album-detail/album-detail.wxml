@@ -17,7 +17,30 @@
     </view>
     <!-- 列表 -->
     <view>
+        <!-- 分页的写法 -->
         <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
         <view class="loading" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+        <!-- 不分页的写法 -->
+        <view class="padding-0-10">
+            <view wx:for="{{list}}" wx:key="id" class="list-item flex-vertical-center padding-10-0">
+                <image class="cover-img" src="{{item.front_cover}}" />
+                <view class="margin-left-10">
+                    <view class="item-title font-12 color-616161">{{item.soundstr}}</view>
+                    <view class="flex-vertical-center">
+                        <view class="flex-vertical-center">
+                            <view class="iconfont icon-bofang color-9e9e9e font-12 "></view>
+                            <view class="font-12 color-9e9e9e ">{{item.view_count_formatted}}</view>
+                        </view>
+                        <view class="flex-vertical-center margin-left-10">
+                            <view class="iconfont icon-shijian color-9e9e9e font-12 "></view>
+                            <view class="font-12 color-9e9e9e ">
+                                {{(item.duration/1000/60)}}
+                                <!-- parseInt -->
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

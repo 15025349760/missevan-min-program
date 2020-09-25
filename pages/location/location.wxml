@@ -35,4 +35,6 @@
         </van-cell-group>
     </van-popup>
     <van-toast id="van-toast" />
+    <!-- <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas> -->
+    <canvas type="2d" canvas-id="myQrcode" style="width: 200px; height: 200px;"></canvas>
 </view>

@@ -1,6 +1,7 @@
 <view class="">
     <!-- 标题 -->
     <view>
+        <tabbar actionIndex='a'></tabbar>
         <view class="flex-vertical-space-between padding-0-15 margin-top-10">
             <view class="flex-vertical-center">
                 <view class="title-border"></view>
@@ -15,7 +16,7 @@
     <!-- list -->
     <view class="padding-15">
         <view class="flex-start">
-            <view wx:for="{{albums}}" key="albums" class="albums-item" bind:tap="linkToAlbum" data-id="{{item.id}}">
+            <view wx:for="{{albums}}" key="albums" class="albums-item" bind:tap="linkToAlbum" data-id="{{item.id}}" wx:key="id">
                 <view class="albums-cover-wrap">
                     <image class="" src="../../images/album-cover.efe70663.png" class="albums-cover-bg"></image>
                     <image class="albums-cover" src="{{item.front_cover}}" />
